@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>jquery弹框</title>
+	<style type="text/css" media="screen">
+		.pop_con{
+			display: none;
+		}
+		.pop{
+			width: 300px;
+			height: 200px;
+			border: 1px solid #ddd;
+			background-color: #fff;
+			position: absolute;
+			left: 40%;
+			top: 35%;
+			z-index: 9999;
+		}
+		.pop a{
+			float: right;
+			text-decoration: none;
+			color: #666;
+			margin: 5px 6px;
+			font-size: 14px;
+		}
+		.pop a:hover{
+			color: #f28d33;
+		}
+		.mask{
+			position: fixed;
+			width: 100%;
+			height: 100%;
+			background-color: #000;
+			left: 0;
+			top: 0;
+			opacity: 0.2;
+			filter: alpha(opacity=20);
+			z-index: 9990;
+		}
+	</style>
+	<script type="text/javascript" src='js/jquery-1.12.4.min.js'></script>
+	<script type="text/javascript">
+		$(function(){
+			// 设置弹框初始位置: 在可视区有无滚动距离时都上下左右居中
+			var init_left = ($(window).width() - $(".pop").width()) / 2 + $(window).scrollLeft();
+			var init_top = ($(window).height() - $(".pop").height()) / 2 + $(window).scrollTop();
+			// 点击按钮 弹出弹框
+			$('#btn1').click(function(){
+				$('#pop').show();
+				// 弹框拖拽后，关闭再弹出时，使弹框位置依然为居中
+				$(".pop").css({
+					left: init_left,
+					top: init_top
+				});
+				return false;
+			})
+			// 点击关闭弹框
+			$('#shutoff').click(function(){
+				$('#pop').hide();
+			})
+			// 点击窗口其他位置也使弹框隐藏
+			$(document).click(function(event){
+				$('#pop').hide();
+			})
+			// 点击弹框时，清除事件冒泡
+			$('.pop').click(function(){
+				return false;
+			})
+			// 弹框拖拽
+			$('.pop').drag();
+			// 随着浏览窗口的变化 始终保持居中位置
+            $(window).on("resize scroll", function(){
+				$(".pop").css({
+					left: init_left,
+					top: init_top
+				});
+			})
+		})
+		// 插件方法：拖拽
+		$.fn.extend({
+			drag: function(){
+				var offsetX = 0;
+				var offsetY = 0;
+				$(this).mousedown(function(ev){
+					offsetX = ev.clientX - $(this).offset().left;
+					offsetY = ev.clientY - $(this).offset().top;
+					//记录当前按下的div
+					var _this = this;
+					$(document).mousemove(function(ev){
+						// 限制在可视区范围内拖拽
+						var _left = Math.min(Math.max(ev.clientX - offsetX,0),$(window).width()-$(_this).width());
+						var _top = Math.min(Math.max(ev.clientY - offsetY,0),$(window).height()-$(_this).height());
+
+						$(_this).css({
+							left: _left,
+							top: _top
+						})
+					})
+					// 解除document的mousemove mousedown绑定事件
+					$(document).mouseup(function(){
+						$(document).off('mousemove mousedown');
+					})
+				})
+			}
+		})
+	</script>
+</head>
+<body>
+	<h3>标题</h3>
+	<p>文本</p>
+	<input type="button" name="" value="弹框" id="btn1">
+	<div class="pop_con" id="pop">
+		<div class="pop">
+			<a href="#" title="shutoff" id="shutoff">关闭</a>
+			<p>弹框信息</p>
+			<input type="text" name="">
+		</div>
+		<div class="mask"></div>
+	</div>
+</body>
+</html>

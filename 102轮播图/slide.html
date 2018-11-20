@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>IG牛逼</title>
+	<link rel="stylesheet" type="text/css" href="css/reset.css">
+	<script type="text/javascript" src="js/common.js"></script>
+	<script type="text/javascript" src="js/move.1.04.js"></script>
+	<style type="text/css" media="screen">
+		#title{margin:0 auto;font-size:30px;text-align:center;
+			background: linear-gradient(to top, #e23471,#666eb7, #2aa89c);
+	-webkit-background-clip: text;-webkit-text-fill-color: transparent;}
+		.box{margin:10px auto;width:352px;height:220px;background:gold;position:relative;overflow:hidden;cursor:pointer;}
+		.box .slide {position:relative;width:1760px;height:220px;position:absolute;top:0;}
+		.box .slide li{float:left;}
+		#lu{position:absolute;right:0;bottom:1px;}
+		#lu li{width:10px;height:10px;border-radius:50%;background:#ccc;float:left;margin-right:3px;}
+		#lu .active{background:#fff;}
+	</style>
+	<script type="text/javascript">
+		onload=function(){
+			let box = document.getElementById("box");
+			let points = document.getElementById("lu").children;
+			let oUl = box.children[0];
+			let timer;
+			let index = 0;
+			timer = setInterval(autoplay,2000);
+			box.addEventListener("mouseover",function(){
+				clearInterval(timer);
+			})
+			box.addEventListener("mouseout",function(){
+				clearInterval(timer);
+				timer = setInterval(autoplay,2000);
+			})
+			// points点击切换相应的li,和className
+			for(let j=0;j<points.length;j++){
+				points[j].addEventListener("click",function(){
+					animate(oUl,{left:-352*j});
+					active();
+					points[j].className = "active";
+				})
+			}
+			// 自动播放li
+			function autoplay(){
+				move();
+				active();
+				points[index==4?0:index].className = "active";
+			}
+			// 移动每一个li
+			function move(){
+				if(++index == 5){
+					// 迅速切换为第一张
+					oUl.style.left = 0;
+					index=1;
+				}
+				animate(oUl,{left:-352*index});
+			}
+			// 去掉points的className
+			function active(){
+				for(let i=0;i<points.length;i++){
+					points[i].className="";
+				}
+			}
+			
+		}
+
+	</script>
+</head>
+<body>
+	<h1 id="title">恭喜IG痛失亚军！成功夺冠！</h1>
+	<div id="box" class="box">
+		<ul class="slide">
+			<li><img src="images/01.jpg" alt=""></li>
+			<li><img src="images/02.jpg" alt=""></li>
+			<li><img src="images/03.jpg" alt=""></li>
+			<li><img src="images/qiaoba.jpg" alt=""></li>
+			<li><img src="images/01.jpg" alt=""></li>
+		</ul>
+		<ul id="lu">
+			<li class="active"></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+	</div>
+</body>
+</html>

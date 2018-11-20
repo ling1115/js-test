@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css" media="screen">
+		*{margin:0;padding:0;}
+		div{width:500px;height:240px;position:relative;margin:100px auto;overflow:hidden;border:10px dotted #ccc;}
+		div img{display:block;position:absolute;left:0;top:0;background:gold;margin-top:10px;}
+		#fl,#fr{position:absolute;}
+		#fl{left:420px;top:70px;}
+		#fr{left:470px;top:70px;}
+	</style>
+	<script type="text/javascript" src="js/common.js"></script>
+	<script type="text/javascript">
+		onload=function(){
+			let box = document.getElementById("box");
+			let btn1 = document.getElementById("fl");
+			let btn2 = document.getElementById("fr");
+			let image = box.children[0];
+			let left = -352;
+			let deraction = 2;
+			let timer = setInterval(move,30);
+
+			box.addEventListener("mouseover",function(){
+				clearInterval(timer);
+			})
+			box.addEventListener("mouseout",function(){
+				timer = setInterval(move,30)
+			})
+			btn1.addEventListener("click",function(){
+				deraction = 2;
+			})
+			btn2.addEventListener("click",function(){
+				deraction = -2;
+			})
+			function move(){
+				left+=deraction;
+				
+				if(left>500){
+					console.log(2)
+					left = -352;
+				}
+				if(left<-352){
+					left = 499;
+				}
+				if(left>200 && deraction == 2){
+					image.style.opacity = getStyle(image).opacity - 0.008;
+				}
+				else{
+					image.style.opacity =1;
+				}
+				
+				image.style.left= left +"px";	
+			}
+
+			
+
+		}
+
+
+	</script>
+</head>
+<body>
+	<button id="fl" type="">向左</button>
+	<button id="fr" type="">向右</button>
+	<div id="box">
+		<img src="images/1.jpg" alt="">
+	</div>
+</body>
+</html>

@@ -1,0 +1,32 @@
+border {
+  color: #fff;
+  font-size: 16px;
+  border-top: 1px solid #ccc; }
+
+h2 {
+  font-size: 16px; }
+
+.con {
+  width: 200px;
+  height: 100px; }
+  .con li {
+    width: 50px; }
+  .con a {
+    color: #ccc; }
+  .con:hover a {
+    color: orange; }
+
+.icon-success {
+  background: url(../images/success.jpg) no-repeat; }
+
+.icon-error {
+  background: url(../images/error.jpg) no-repeat; }
+
+.icon-warning {
+  background: url(../images/warning.jpg) no-repeat; }
+
+#content {
+  width: 372px;
+  height: 300px; }
+
+/*# sourceMappingURL=scss%BB%F9%B1%BE.css.map */

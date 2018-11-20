@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+		<style>
+			#div1 button{
+				width: 100px;
+				height: 30px;
+				background-color: gray;
+				color: white;
+				font-size: 16px;
+			}
+			#div1 div{
+				width: 340px;
+				height: 340px;
+				border: 1px solid black;
+				background-color: gray;
+				display: none
+			}
+			#div1 .active{
+				background-color: orange
+			}
+		</style>
+		<script type="text/javascript" src='js/jquery-1.12.4.min.js'></script>
+		<script>
+			$(function(){
+				$('#div1').find("button").click(function(){
+					// 删除所有button的class
+					$('#div1').find('button').attr('class','');
+					// 隐藏所有div，显示当前的div
+					$('#div1').find('div').css("display",'none').eq($(this).index()).css("display","block");
+					// 给当前的button添加class:active
+					$(this).attr("class","active")
+				})
+			})
+		</script>
+	</head>
+	<body>
+		<div id = "div1">
+			<button class = "active">财经</button> 
+			<!-- index = 0 -->
+			<button>游戏</button>
+			<!-- index = 1 -->
+			<button>教育</button>
+			<!-- index = 2 -->
+			<div style = "display: block">财经网——秉承《财经》杂志理念,严守新闻专业主义精神,坚持客观、中道、理性、建设性前提下批评性立场,整合《财经》杂志与财讯传媒旗下20余家媒体资源,融汇贯通海...</div>
+			<div>游侠网为单机游戏玩家提供最新单机游戏业界动态、国内外单机游戏下载、单机游戏补丁、单机游戏攻略秘籍、单机游戏专题等内容。坚守单机阵地,弘扬单机文化!</div>
+			<div>中国教育在线是中国最大的综合教育门户,主要发布高考、考研、自考、成人高考、教师招聘、就业、留学等权威的招考、招生、就业、招聘、复习、辅导信息,并设有校园、...</div>
+		</div>
+	</body>
+</html>
+
+
+

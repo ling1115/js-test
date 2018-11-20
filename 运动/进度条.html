@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="js/common.js"></script>
+	<style type="text/css" media="screen">
+	*{margin:0;padding:0;}
+		#con-box{margin:50px auto;width:250px;height:32px;background:pink;position:relative;}
+		#con{width:200px;height:30px;background:#ddd;border:1px solid #ccc;position:relative;overflow:hidden;}
+		#move{display: block;background:gold;position:absolute;left:0;top:0;}
+		#count{display:block;width:40px;height:30px;margin-left:10px;border:1px solid #ccc;position:absolute;left:199px;top:0;background:#fff;}
+	</style>
+
+	<script type="text/javascript">
+		onload=function(){
+			let con = document.getElementById("con");
+			let move = document.getElementById("move");
+			let count = document.getElementById("count");
+			con.addEventListener("mouseover",function(){
+				animate({
+					this: left=200
+					
+				});
+			})
+		}
+
+	</script>
+</head>
+<body>
+	<div id="con-box">
+		<div id="con">
+			<span id="move"></span>
+		</div>
+		<span id="count"></span>
+	</div>
+</body>
+</html>

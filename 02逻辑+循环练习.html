@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		// 1 打印五次“要亲亲，要抱抱，要举高高！”；
+		// for(var i=0;i<5;i++){
+		// 	document.write('要亲亲，要抱抱，要举高高！');
+		// 	document.write("<br>");
+		// }
+
+		// 2 从1打印到100之间的数;
+		// for(var n=1;n<=100;n++){
+		// 	console.log(n);
+		// }
+
+		// 3、求1到100之间的和；
+		// var sum = 0;
+		// for(var j=1;j<=100;j++){
+		// 	sum = sum + j;
+		// }
+		// console.log(sum);
+
+		// 4、求1到100之间的奇数和；
+		// var s=0
+		// for(var a=1;a<=100;a++){
+		// 	if(a%2!=0){
+		// 		s=s+a;
+		// 	}
+		// }
+		// console.log(s);
+
+		// 5、打印斐波那契数列的前20个数，并打印这20个数的总和； 
+		// 斐波那契特点：第1,2两个数值为1，从第三个数开始，该数是其前面两个数之和；1  1  2  3  5  8  13 21
+		// var first=second=1,next=0,sum=0;
+		// for(var i=1;i<=20;i++){
+		// 	document.write(first+'&nbsp;');
+		// 	if(i%4==0){
+		// 		document.write("<br>");
+		// 	}
+		// 	next=first+second;
+		// 	first=second;
+		// 	second=next;
+		// 	sum =sum + first;
+		// }
+		// document.write("总和为："+sum);
+
+		// 6、2012年城市人口25万人，每年增长25%，请问按此增长速度，到哪一年人数将达到100万人？
+		
+			// var count=2012;
+			// for(var num=25;num<100;){
+			// 	if(num<100){
+			// 		num=num+num*0.25;
+			// 		count++;
+			// 	}
+				
+			// }
+			// document.write("将在"+count+"年人数将达到100万人");
+		
+		// 7、输出1-100之间所有的偶数，每5个换一行。
+			// var count=0;
+			// for(var i=1;i<=100;i++){
+			// 	if(i%2==0){
+			// 		document.write(i+"&nbsp;");
+			// 		count++;
+			// 		if(count%5==0){
+			// 			document.write("<br>");
+			// 		}
+			// 	}
+			// }
+
+		// 打印三位数中所有的水仙花数:1^3+5^3+3^3=153
+		
+		// for(var i=100;i<1000;i++){
+		// 	var hundred=parseInt(i/100);
+		// 	var decade=parseInt((i/10)%10);
+		// 	var unit=i%10;
+		// 	if(i==(hundred*hundred*hundred+decade*decade*decade+unit*unit*unit)){
+		// 		document.write(i+"&nbsp;");
+		// 	}
+		// }
+
+		// 9、输出1998-2016之间的所有的闰年;
+
+		// for(var n=1998;n<=2016;n++){
+		// 	if(n%400==0 || (n%100!=0 && n%4==0)){
+		// 		document.write(n+"&nbsp;");
+		// 	}
+		// }
+
+		// 10、打印五位数中所有的回文数并且统计其个数，例如 96569;
+		// 小数求余大数就是小数本身，所以最后的高位数可以不用%10
+		// var count=0;
+		// for(var i=10000;i<100000;i++){
+		// 	var gewei=i%10;
+  //       	var shiwei = parseInt(i/10%10)
+		// 	var baiwei = parseInt(i/100%10)
+		// 	var qianwei=parseInt(i/1000%10)
+		// 	var wanwei=parseInt(i/10000);
+			
+		// 	if(wanwei==gewei && qianwei==shiwei){
+		// 		document.write(i+"&nbsp;");
+		// 		count++;
+		// 		if(count%10==0){
+		// 			document.write("<br>");
+		// 		}
+		// 	}
+		// }
+		// document.write("总计："+count);
+
+		// 11、打印乘法口诀表：行数和列数1:2
+		// for(var i=1;i<=5;i++){
+		// 	for(var j=1;j<2*i;j++){
+		// 		document.write("*")
+		// 	}
+		// 	document.write("<br>");
+		// }
+
+		// 九九乘法表
+		var sum=0;
+		for(var i=1;i<=9;i++){
+			for(var j=1;j<=i;j++){
+				sum=i*j;
+				document.write(j+"*"+i+"="+sum+"&nbsp;");
+			}
+			document.write("<br>");
+		}
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

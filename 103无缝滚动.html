@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="css/reset.css">
+	<script type="text/javascript" src="js/common.js"></script>
+	<script type="text/javascript" src="js/move.1.04.js"></script>
+	<style type="text/css" media="screen">
+		#slide{width:500px;height:100px;margin:0 auto;border:1px solid #ddd;position:relative;overflow:hidden;cursor:pointer}
+		#slide ul{width:1000px;height:90px;position:absolute;left:0;top:0;}
+		#slide ul li{float:left;width:90px;height:90px;background:#ccc;font-size:32px;text-align:center;line-height:90px;margin:5px;}
+		#btns{width:500px;height:30px;margin:50px auto 0;}
+		
+	</style>
+	<script type="text/javascript">
+		onload=function(){
+			let box =document.getElementById("slide");
+			let btns = document.getElementById("btns").children;
+			let oUl = box.children[0]
+			let index=0;
+			let deraction=2;
+			let timer;
+			timer = setInterval(autoplay,30);
+
+			box.addEventListener("mouseover",function(){
+				clearInterval(timer);
+			})
+			box.addEventListener("mouseout",function(){
+				timer = setInterval(autoplay,30);
+			})
+
+			btns[0].addEventListener("click",function(){
+				deraction = 2;
+			})
+			btns[1].addEventListener("click",function(){
+				deraction = -2;
+			})
+
+			function autoplay(){
+				index -= deraction;
+				if(index<-500){
+					index=0;
+				}
+				if(index>0){
+					index=-500;
+				}
+				oUl.style.left= index +"px";
+			}
+		}
+
+	</script>
+</head>
+<body>
+	<div id="btns">
+		<button type="">向左</button>
+		<button type="">向右</button>
+	</div>
+	<div id="slide">
+		<ul>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+		</ul>
+	</div>
+</body>
+</html>

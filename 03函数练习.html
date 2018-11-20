@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+		//1. 编写一个函数，输入n为偶数时，调用函数求1/2+1/4+...+1/n,当输入n为奇数时，
+		//调用函数求/1+1/3+...+1/n
+
+		function calc(n){
+			if(n==1) return 1;
+			if(n%2==0){
+				var sum=0;
+				for(var i=1;i<=n/2;i++){
+					sum += 1/(i*2);
+				}
+				return sum;
+			}
+			return 1/n+calc(n-2);
+		}
+
+		console.log(calc(8));
+		calc(7);
+
+		//2. 使用函数完成任意数字阶乘的计算   要求：页面输入任意数字，点击按钮后计算阶乘
+		window.onload = function(){
+        	var input = document.getElementById('input');
+        	var butn = document.getElementById('butn');
+        	
+
+        	butn.onclick=function(){
+        		var sum=1;
+        		var num = input.value;
+        		if(num==1){ return 1;}
+        		for(var i=num;i>1;i--){
+        			sum *= i;
+        		}
+        		console.log(sum);
+        	}	
+ 	    }
+
+
+ 	    //3.编写一个函数，计算任意两个数字之间所能组成的奇数个数，数字必须是个位数。比如：计算0~3之间能组成的奇数是： 01、03、13、21、23、31
+ 	    function odd(num1,num2){
+ 	    	for(var i=num1;i<=num2;i++){
+ 	    		for(var j=num2;j>=num1;j--){
+ 	    			var sum = String(i)+j;
+ 	    			if(sum%2!=0){
+ 	    				console.log(sum+" ");
+ 	    			}
+ 	    		}
+ 	    	}
+ 	    }
+ 	    odd(0,3) //输出结果：03 01 13 11 23 33 31 
+
+ 	    //4. 某个公司采用公用电话传递数据，数据是四位的整数，在传递过程中是加密的，加密规则如下：每位数字都加上5,然后用除以10的余数代替该数字，再将第一位和第四位交换，第二位和第三位交换，请编写一个函数，传入原文，输出密文
+
+ 	    function hash(num){
+ 	    	var first=parseInt((num/1000+5)%10);
+ 	    	var second = parseInt((num/100%10+5)%10);
+ 	    	var third = parseInt((num/10%10+5)%10)
+ 	    	var four = parseInt((num%10+5)%10);
+ 	    	var sum=String(four)+third+second+first;
+ 	    	return +sum;
+ 	    }
+ 	    
+	</script>
+</head>
+<body>
+	<input type="text" name="" value="" id="input">
+	<input type="button" name="" value="计算" id="butn">
+</body>
+</html>

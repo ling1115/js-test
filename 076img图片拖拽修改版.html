@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title></title>
+		<style type="text/css" media="screen">
+			#box{
+				position:absolute; left:0; top:0; padding:5px; background:#ccc; 
+				border-radius:5px; box-shadow:0 0 5px #111
+			}
+		</style>
+		<script type="text/javascript">
+			onload=function(){
+				var box = document.getElementById("box");
+				box.style.left = getCookie("left") + "px";
+				box.style.top = getCookie("top") + "px";
+				var mouse;
+				box.addEventListener("mousedown",function(e){
+					e.preventDefault();
+					mouse={
+						x:e.offsetX,
+						y:e.offsetY
+					}
+					
+					document.addEventListener("mousemove",move)
+				})
+				
+				document.addEventListener("mouseup",function(e){
+					e.preventDefault();
+
+					setCookie("left",box.offsetLeft,7);
+					setCookie("top",box.offsetTop,7);
+					console.log(setCookie)
+					document.removeEventListener("mousemove",move)
+				})
+				
+				function move(e){
+					e.preventDefault();
+					var e = e || event;
+					var _left = Math.min(Math.max(e.clientX - mouse.x , 0), window.innerWidth - box.offsetWidth);
+					var _top = Math.min(Math.max(e.clientY - mouse.y , 0), window.innerHeight - box.offsetHeight);
+
+					box.style.left = _left + "px";
+					box.style.top = _top + "px";
+				}		
+			}
+			
+			function getCookie(key) {
+				var str = document.cookie;
+				var list = str.split("; ");
+				for(var i=0; i<list.length; i++) {
+					var kvs = list[i].split("=");
+					if(kvs[0] == key) {
+						return kvs[1];
+					}
+				}
+				return null;
+			}
+			function setCookie(key, value, expires, path) {
+				expires = expires || 0 ;
+				var d = null;
+				if(expires) {
+					d = new Date()
+					d.setDate( d.getDate()+expires );
+				}
+				document.cookie = key+"="+value + (d?"; expires="+d:"") + (path?"; path="+path:"");
+			}
+		</script>
+	</head>
+	<body>
+		<div id="box">
+			<img src="images/1.jpg" >
+		</div>
+	</body>
+</html>
