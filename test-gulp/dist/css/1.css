@@ -1,0 +1,9 @@
+#box {
+  height: 300px;
+  width: 200px;
+  color: orange;
+  background: orange; }
+
+.box {
+  width: 200px;
+  background: orange; }

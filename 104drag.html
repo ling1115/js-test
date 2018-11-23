@@ -6,14 +6,21 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>Document</title>
 	<style>
-		#box{height:100px;width:100px;background:red;position:absolute;}
+		#box{height:100px;width:100px;background:red;position:absolute;left:100px;top:100px;}
 	</style>
+	<script type="text/javascript" src='js/jquery-1.12.4.min.js'></script>
+	<script type="text/javascript" src="js/jquery-drag.js"></script>
 	<script type="text/javascript" src="js/drag.js"></script>
 	<script>
-		onload=function(){
-			var d1 = new Drag("box");
+		$(function(){
+			$('#box').drag();
+		})
+
+		// onload=function(){
+		// 		var d1 = new Drag("box");
+		// }
 			
-		}
+		
 	</script>
 </head>
 <body>

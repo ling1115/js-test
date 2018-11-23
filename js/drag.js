@@ -25,8 +25,10 @@ Drag.prototype = {
 	},
 	// 鼠标移动：box跟随鼠标的位置移动
 	move:function(ev){
-		var _left = Math.min(Math.max(ev.clientX - this.X , 0), window.innerWidth - this.el.offsetWidth);
-		var _top = Math.min(Math.max(ev.clientY - this.Y , 0), window.innerHeight - this.el.offsetHeight);
+		var _left = Math.min(Math.max(ev.clientX - this.X , 0) , 
+					window.innerWidth - this.el.offsetWidth);
+		var _top = Math.min(Math.max(ev.clientY - this.Y , 0) , 
+					window.innerHeight - this.el.offsetHeight);
 
 		this.el.style.left = _left +"px";
 		this.el.style.top = _top +"px";

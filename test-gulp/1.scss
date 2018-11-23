@@ -1,0 +1,14 @@
+$height:300px;
+$width:200px;
+$color:orange;
+#box{
+	height:$height;
+	width:$width;
+	color:$color;
+	background:$color;
+}
+
+.box{
+	width:$width;
+	background:$color;
+}
