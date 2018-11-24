@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css" media="screen">
+		*{margin:0;padding: 0;}
+		body{background: #ccc;}
+		#box{margin: 200px auto;width: 500px;}
+		input{
+			outline:none;
+			width: 300px;
+			height: 38px;
+			text-indent:10px;
+			font:20px/30px 'Microsoft YaHei';
+		}
+		#search{
+			width: 100px;
+			height: 42px;
+			text-indent:0px;
+		}
+		
+		#list li{
+			width: 292px;
+			list-style:none;
+			padding-left: 10px;
+			cursor: pointer;
+			line-height:26px;
+		}
+		#list li:hover{background: #fff;}
+		#list li a{
+			width: 302px;
+			height: 26px;
+			text-decoration: none;
+			color: #000;
+		}
+	</style>
+	<script type="text/javascript">
+		// 对文本框触发键盘事件时 ， 需要请求服务器的数据
+		onload = function(){
+			var text = document.getElementById('text');
+			var search = document.getElementById('search');
+			// 键盘抬起 检索
+			text.onkeyup = function(){
+				var script = document.createElement('script')
+				document.body.appendChild( script );
+				script.src = 'https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd='+this.value+'&cb=getData';
+			}
+			//点击搜索，转到搜索结果页面
+			search.onclick = function(){
+				location.href = `https://www.baidu.com/s?wd=${ text.value }`;
+			}
+			//键盘按下回车，转到搜索结果页面
+			text.onkeydown = function(e){
+				var e = e || event;
+				if(e.keyCode == 13){
+					location.href = `https://www.baidu.com/s?wd=${ text.value }`;
+				}
+			}
+
+		}	
+
+		/* jsonp格式接口：
+		接口路径：   https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd="+txt+"&cb=fn
+		wd 参 数值为用户搜索的数据值
+		cb 为callback回调函数
+		*/
+		function getData(json){
+			var ul = document.getElementById("list");
+			// console.log(json);
+			var arr = json.s;
+			var str = '';
+			for(var i = 0 ; i < arr.length ; i++){
+				// 点击li>a 也可以转到搜索结果页面
+				str += `<li><a href="https://www.baidu.com/s?wd=${ arr[i] }">${arr[i]}</a></li>`;
+			}
+			ul.innerHTML = str;
+		}
+
+	</script>
+</head>
+<body>
+	<div id="box">
+		<input type="text" id="text" autofocus>
+		<input type="button" name="" id="search" value="搜索">
+		<ul id="list">
+		</ul>
+	</div>
+	<form action="" method="get" accept-charset="utf-8">
+		
+		
+	</form>
+</body>
+</html>
