@@ -72,8 +72,8 @@
 			// 随着浏览窗口的变化 始终保持居中位置
             $(window).on("resize scroll", function(){
 				$(".pop").css({
-					left: init_left,
-					top: init_top
+					left: ($(window).width() - $(".pop").width()) / 2,
+					top: ($(window).height() - $(".pop").height()) / 2 + $(window).scrollTop()
 				});
 			})
 		})
